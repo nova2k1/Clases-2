@@ -1,2 +1,28 @@
 # Clases-2
-Clases-2
+
+
+
+class NewClass:
+    name = ""
+    def set_value(self, attr, value):
+        self.__setattr__(attr, value)
+
+    def get_value(self, attr):
+        self.__getattribute__(attr)
+
+    def __setattr__(self, attr, value):
+        if attr == "name":
+            self.__dict__[attr] = value
+        else:
+            raise AttributeError(attr + ' not allowed')
+
+    def __getattribute__(self, attr):
+        if attr == "name":
+            return object.__getattribute__(self,attr)
+
+
+a = NewClass()
+print(a.name)
+a.set_value("name", "foo")
+print(a.name)
+print(a.get_value("name"))
